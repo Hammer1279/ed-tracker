@@ -1,5 +1,5 @@
 {
-  "name": "EDTracker",
+  "name": "ed-tracker",
   "version": "1.0.0-alpha.1",
   "description": "An Tracker for Elite Dangerous",
   "main": "index.min.js",

@@ -11,7 +11,7 @@ ED-Tracker
 Installation
 ------------
 ```
-npm install EDTracker
+npm install ed-tracker
 ```
 Docs
 ----
