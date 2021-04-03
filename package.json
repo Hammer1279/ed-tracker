@@ -1,8 +1,8 @@
 {
-  "name": "ed-tracker",
+  "name": "EDTracker",
   "version": "1.0.0",
   "description": "An Tracker for Elite Dangerous",
-  "main": "index.js",
+  "main": "index.min.js",
   "scripts": {
     "test": "npx run nodemon"
   },
@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "superagent": "^6.1.0",
+    "throttle": "^1.0.3",
     "websocket": "^1.0.33"
   }
 }
