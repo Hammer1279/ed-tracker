@@ -15,11 +15,11 @@ npm install ed-tracker-alpha
 ```
 Docs
 ----
- - [login()](#login(key))
+ - [login()](#loginkey)
  - [events](#events)
- - [send()](#send(data))
- - [appendStream()](#appendStream(stream))
- - [~~api()~~](#api(data))
+ - [send()](#senddata)
+ - [appendStream()](#appendstreamstream)
+ - [~~api()~~](#apidata)
  > api is currently not done yet, it will be used for direct communication with the server in the future
 
  > ### Sidenote: The script also creates an file called `log.txt` for any messages logged and recieved
