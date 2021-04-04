@@ -1,6 +1,6 @@
 {
   "name": "ed-tracker-alpha",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "An Tracker for Elite Dangerous",
   "main": "index.min.js",
   "scripts": {
