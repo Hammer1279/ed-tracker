@@ -15,11 +15,13 @@ npm install ed-tracker-alpha
 ```
 Docs
 ----
+*[D] - Depricated*
  - [login()](#loginkey)
- - [events](#events)
+ - [**[D]** events ](#events)
  - [send()](#senddata)
  - [appendStream()](#appendstreamstream)
  - [~~api()~~](#apidata)
+ - [Listening for Events](#event)
  > api is currently not done yet, it will be used for direct communication with the server in the future
 
  > ### Sidenote: The script also creates an file called `log.txt` for any messages logged and recieved
@@ -33,6 +35,7 @@ Docs
  ```
 
  ## events
+ **Depricated, now listen on the EDTracker itself!**
  The events EventStream is used to read Data from the Incoming connections and logs from internal scripts
 
  There are 2 Types of Events so far:
@@ -78,3 +81,5 @@ Tracker.appendStream(Reader)
 > The API function is supposed to allow you to directly communicate with the webserver thus bypassing the websocket entirely
 
 **This function is not ready yet and not included in current releases.**
+
+## <a name="event"></a>Listening for Events
