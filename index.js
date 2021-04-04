@@ -3,7 +3,6 @@ const superagent = require('superagent')
 const WebSocketClient = require('websocket').client;
 const events = require("events");
 // const EventStream = new events.EventEmitter();
-const Throttle = require('throttle');
 
 const client = new WebSocketClient();
 
@@ -18,12 +17,11 @@ class EDTracker extends events.EventEmitter{
         this.events = this
         this.send = sendData
         this.appendStream = function (stream) {
-            const throttle = new Throttle(50);
+            const throttle = somethrottlething
             const ThrottledStream = new events.EventEmitter();
             stream.pipe(throttle).pipe(ThrottledStream);
             ThrottledStream.on('newLine',data=>{sendData(data)})
         }
-        // this.api = function (data) {}
         
     }
 }

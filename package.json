@@ -1,5 +1,5 @@
 {
-  "name": "ed-tracker-alpha",
+  "name": "ed-tracker",
   "version": "1.0.0-alpha.5",
   "description": "An Tracker for Elite Dangerous",
   "main": "index.min.js",
@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "superagent": "^6.1.0",
-    "throttle": "^1.0.3",
     "websocket": "^1.0.33"
   }
 }
