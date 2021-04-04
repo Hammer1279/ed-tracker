@@ -21,7 +21,7 @@ Docs
  - [send()](#senddata)
  - [appendStream()](#appendstreamstream)
  - [~~api()~~](#apidata)
- - [Listening for Events](#event)
+ - [Listening for Events](#listening-for-events)
  > api is currently not done yet, it will be used for direct communication with the server in the future
 
  > ### Sidenote: The script also creates an file called `log.txt` for any messages logged and recieved
@@ -83,3 +83,16 @@ Tracker.appendStream(Reader)
 **This function is not ready yet and not included in current releases.**
 
 ## <a name="event"></a>Listening for Events
+To Receive Events simply listen for events on the main class:
+```js
+EDTracker.on("Event_Name", data => {
+    console.log(data)
+})
+```
+
+ There are 2 Types of Events so far:
+ | Event | Data |
+ |:-----:| ---- |
+ | data | Data is used for sending Debug Info and Errors from the script, **as of now these are not seperated yet** |
+ | ~~error~~ | ~~The Error Event is used for sending errors from the Script and should always be listened at~~ |
+ | message | The Message Event is used for receiving Data from the Server side. These can be Infos for the connection to the Server, upcoming events or acknowledge that an request was successful |

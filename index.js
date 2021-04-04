@@ -2,13 +2,34 @@ const fs = require("fs")
 const superagent = require('superagent')
 const WebSocketClient = require('websocket').client;
 const events = require("events");
-const EventStream = new events.EventEmitter();
+// const EventStream = new events.EventEmitter();
 const Throttle = require('throttle');
 
 const client = new WebSocketClient();
 
+let EventStream;
+
+class EDTracker extends events.EventEmitter{
+    constructor (){
+        super()
+        EventStream = this
+        // if(!process.env.ED_API_Key){log('Missing API Key');return}
+        this.login = function (key) {client.connect('ws://api.drillkea.com:80/', 'ed-tracker', 'ED-Tracker-Client',{apikey:key});}
+        this.events = this
+        this.send = sendData
+        this.appendStream = function (stream) {
+            const throttle = new Throttle(50);
+            const ThrottledStream = new events.EventEmitter();
+            stream.pipe(throttle).pipe(ThrottledStream);
+            ThrottledStream.on('newLine',data=>{sendData(data)})
+        }
+        // this.api = function (data) {}
+        
+    }
+}
+
 function log(data) {
-    EventStream.emit('data',data)
+    if(EventStream){EventStream.emit('data',data)}else throw('Missing EventStream')
     fs.appendFileSync(__dirname+'/log.txt',new Date().toLocaleString()+' | '+data+'\r\n')
 }
 
@@ -44,23 +65,6 @@ function sendData(data) {
     }else{
         log('Error: Not Logged in yet!')
         return
-    }
-}
-
-class EDTracker {
-    constructor (){
-        // if(!process.env.ED_API_Key){log('Missing API Key');return}
-        this.login = function (key) {client.connect('ws://api.drillkea.com:80/', 'ed-tracker', 'ED-Tracker-Client',{apikey:key});}
-        this.events = EventStream
-        this = EventStream
-        this.send = sendData
-        this.appendStream = function (stream) {
-            const throttle = new Throttle(50);
-            const ThrottledStream = new events.EventEmitter();
-            stream.pipe(throttle).pipe(ThrottledStream);
-            ThrottledStream.on('newLine',data=>{sendData(data)})
-        }
-        // this.api = function (data) {}
     }
 }
 
