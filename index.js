@@ -52,6 +52,7 @@ class EDTracker {
         // if(!process.env.ED_API_Key){log('Missing API Key');return}
         this.login = function (key) {client.connect('ws://api.drillkea.com:80/', 'ed-tracker', 'ED-Tracker-Client',{apikey:key});}
         this.events = EventStream
+        this = EventStream
         this.send = sendData
         this.appendStream = function (stream) {
             const throttle = new Throttle(50);
