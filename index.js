@@ -16,12 +16,12 @@ class EDTracker extends events.EventEmitter {
         this.login = function (key) { client.connect('ws://api.drillkea.com:80/', 'ed-tracker', 'ED-Tracker-Client', { apikey: key }); }
         this.events = this
         this.send = sendData
-        this.appendStream = function (stream) {
+        this.appendStream = function (stream, event) {
             //Cooldown = half second
             var cooldown = 0.5 * 1000
             var queue = new Array
 
-            stream.on('newLine', data =>addQueue(data))
+            stream.on(event, data =>addQueue(data))
 
             //Add data here!
             function addQueue(data) {
