@@ -7,6 +7,7 @@ ED-Tracker
 
 ---
 > ### This Tracker requires the `edreader` package by `@fightingdoggo`
+> To Install it: `npm i @fightingdoggo/edreader`
 ---
 Installation
 ------------
@@ -19,8 +20,7 @@ Docs
  - [login()](#loginkey)
  - [**[D]** events ](#events)
  - [send()](#senddata)
- - [appendStream()](#appendstreamstream)
- - [~~api()~~](#apidata)
+ - [appendStream()](#appendstreamstream-event)
  - [Listening for Events](#listening-for-events)
  > api is currently not done yet, it will be used for direct communication with the server in the future
 
@@ -36,6 +36,8 @@ Docs
 
  ## events
  **Depricated, now listen on the EDTracker itself!**
+ > Exists for Backwards compatibility only, and might not be included in future versions
+
  The events EventStream is used to read Data from the Incoming connections and logs from internal scripts
 
  There are 2 Types of Events so far:
@@ -65,7 +67,7 @@ EDTracker.send("Ping")
 // The server would now send an message event with the data "Pong"
 ```
 
-## appendStream(stream)
+## appendStream(stream, event)
 AppendStream is used to append an `edreader` EventStream to this instance of `EDTracker`.
 This will then automatically send all Journal Entries to the Server to be processed.
 > Do not use this if you are manually sending data with `EDTracker.send()`
@@ -73,14 +75,11 @@ This will then automatically send all Journal Entries to the Server to be proces
 Example:
 ```js
 let Tracker = new EDTracker
-let Reader = require('edreader')
-Tracker.appendStream(Reader)
+let Reader = require('@fightingdoggo/edreader') //v1.0.3 or higher
+Tracker.appendStream(Reader, 'allData')
+// will send all Events to the Server
 ```
-
-## ~~api(data)~~
-> The API function is supposed to allow you to directly communicate with the webserver thus bypassing the websocket entirely
-
-**This function is not ready yet and not included in current releases.**
+> For all events see: https://www.npmjs.com/package/@fightingdoggo/edreader
 
 ## <a name="event"></a>Listening for Events
 To Receive Events simply listen for events on the main class:
