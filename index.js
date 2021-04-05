@@ -7,6 +7,8 @@ const events = require("events");
 const client = new WebSocketClient();
 
 let EventStream;
+let sendData = function () {throw('Connection not yet Established!')}
+let pending = false
 
 class EDTracker extends events.EventEmitter {
     constructor() {
@@ -45,6 +47,10 @@ function log(data) {
     if (EventStream) { EventStream.emit('data', data) } else throw ('Missing EventStream')
     fs.appendFileSync(__dirname + '/log.txt', new Date().toLocaleString() + ' | ' + data + '\r\n')
 }
+function error(data) {
+    if (EventStream) { EventStream.emit('error', data) } else throw ('Missing EventStream')
+    fs.appendFileSync(__dirname + '/log.txt', 'ERROR: ' + new Date().toLocaleString() + ' | ' +  data + '\r\n')
+}
 
 client.on('connectFailed', function (error) {
     log('Connect Error: ' + error.toString());
@@ -52,34 +58,38 @@ client.on('connectFailed', function (error) {
 
 client.on('connect', function (connection) {
     global.connection = connection
+    let interval = setInterval(() => {
+        if(pending)return connection.drop()
+        connection.ping('KEEP_ALIVE')
+        pending = true
+    }, 30000);
     log('Connection to Server established')
     connection.on('error', function (error) {
-        log("Connection Error: " + error.toString());
+        error("Connection Error: " + error.toString());
     });
     connection.on('close', function () {
+        clearInterval(interval)
         log('Connection Closed');
     });
     connection.on('message', function (message) {
         if (message.type === 'utf8') {
-            log("Received: " + message.utf8Data);
+            log("Received: " + JSON.stringify(message.utf8Data));
             EventStream.emit('message', JSON.parse(message.utf8Data))
         }
     });
-});
-
-function sendData(data) {
-    if (connection) {
-        if (connection.connected) {
-            log("Sent: " +data)
-            connection.send(data)
-        } else {
-            log('Error: Not connected yet!')
-            return
-        }
-    } else {
-        log('Error: Not Logged in yet!')
-        return
+    connection.on('pong',data=>{
+        if(pending)pending=false
+        log('Pong: '+JSON.stringify(data))
+    })
+    sendData = function (data) {
+            if (connection.connected) {
+                log("Sent: " +data)
+                connection.send(data)
+            } else {
+                log('Error: Not connected yet!')
+                return
+            }
     }
-}
+});
 
 module.exports = EDTracker

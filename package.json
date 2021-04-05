@@ -1,8 +1,8 @@
 {
   "name": "ed-tracker",
-  "version": "1.0.0-alpha.12-debug",
+  "version": "1.0.0-alpha.13",
   "description": "An Tracker for Elite Dangerous",
-  "main": "index.js",
+  "main": "index.min.js",
   "scripts": {
     "test": "npx run nodemon"
   },
