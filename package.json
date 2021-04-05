@@ -1,6 +1,6 @@
 {
   "name": "ed-tracker-debug",
-  "version": "1.0.0-alpha.9-debug",
+  "version": "1.0.0-alpha.10-debug",
   "description": "An Tracker for Elite Dangerous",
   "main": "index.js",
   "scripts": {
