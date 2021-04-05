@@ -75,7 +75,8 @@ This will then automatically send all Journal Entries to the Server to be proces
 Example:
 ```js
 let Tracker = new EDTracker
-let Reader = require('@fightingdoggo/edreader') //v1.0.3 or higher
+let Reader = require('@fightingdoggo/edreader') //v1.0.4 or higher
+Reader.startAll() // starts all Listeners
 Tracker.appendStream(Reader, 'allData')
 // will send all Events to the Server
 ```

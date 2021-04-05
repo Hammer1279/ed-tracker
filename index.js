@@ -13,7 +13,7 @@ class EDTracker extends events.EventEmitter {
         super()
         EventStream = this
         // if(!process.env.ED_API_Key){log('Missing API Key');return}
-        this.login = function (key) { client.connect('ws://api.drillkea.com:80/', 'ed-tracker', 'ED-Tracker-Client', { apikey: key }); }
+        this.login = function (key,url="api.drillkea.com:80") { client.connect('ws://'+url, 'ed-tracker', 'ED-Tracker-Client', { apikey: key }); }
         this.events = this
         this.send = sendData
         this.appendStream = function (stream, event) {
