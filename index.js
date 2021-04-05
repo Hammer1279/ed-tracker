@@ -25,7 +25,7 @@ class EDTracker extends events.EventEmitter {
 
             //Add data here!
             function addQueue(data) {
-                queue.push(data)
+                queue.push(JSON.stringify(data))
             };
 
             setInterval(() => {
@@ -70,6 +70,7 @@ client.on('connect', function (connection) {
 function sendData(data) {
     if (connection) {
         if (connection.connected) {
+            log("Sent: " +data)
             connection.send(data)
         } else {
             log('Error: Not connected yet!')
