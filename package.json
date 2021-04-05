@@ -28,5 +28,8 @@
   "dependencies": {
     "superagent": "^6.1.0",
     "websocket": "^1.0.33"
+  },
+  "optionalDependencies": {
+    "@fightingdoggo/edreader": "^1.0.3"
   }
 }
