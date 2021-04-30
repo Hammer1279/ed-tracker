@@ -24,7 +24,7 @@ Docs
  - [Listening for Events](#listening-for-events)
  > api is currently not done yet, it will be used for direct communication with the server in the future
 
- > ### Sidenote: The script also creates an file called `log.txt` for any messages logged and recieved
+ > ### Sidenote: The script also creates an file called `log.txt` for any messages logged and received
 
  ## login(Key)
  The login Function is used to connect to the Server using an API Key given out in our before mentioned Guilded Server.
@@ -35,7 +35,7 @@ Docs
  ```
 
  ## events
- **Depricated, now listen on the EDTracker itself!**
+ **Deprecated, now listen on the EDTracker itself!**
  > Exists for Backwards compatibility only, and might not be included in future versions
 
  The events EventStream is used to read Data from the Incoming connections and logs from internal scripts
@@ -43,7 +43,7 @@ Docs
  There are 2 Types of Events so far:
  | Event | Data |
  |:-----:| ---- |
- | data | Data is used for sending Debug Info and Errors from the script, **as of now these are not seperated yet** |
+ | data | Data is used for sending Debug Info and Errors from the script, **as of now these are not separated yet** |
  | ~~error~~ | ~~The Error Event is used for sending errors from the Script and should always be listened at~~ |
  | message | The Message Event is used for receiving Data from the Server side. These can be Infos for the connection to the Server, upcoming events or acknowledge that an request was successful |
 ---
@@ -58,7 +58,7 @@ Example:
 
 ## send(data)
 The Send Function is used to directly send data to the Server.
-Due to how it is processed, it is recommended to not to send Data directly to the Server to get an valid response.
+Due to how it is processed, it is recommended to not to send Data directly to the Server to get a valid response.
 For more info for how the data is processed contact us [here](mailto:contact@drillkea.com 'Drillkea Support Email').
 
 Example:
@@ -93,6 +93,6 @@ EDTracker.on("Event_Name", data => {
  There are 2 Types of Events so far:
  | Event | Data |
  |:-----:| ---- |
- | data | Data is used for sending Debug Info and Errors from the script, **as of now these are not seperated yet** |
+ | data | Data is used for sending Debug Info and Errors from the script, **as of now these are not separated yet** |
  | ~~error~~ | ~~The Error Event is used for sending errors from the Script and should always be listened at~~ |
  | message | The Message Event is used for receiving Data from the Server side. These can be Infos for the connection to the Server, upcoming events or acknowledge that an request was successful |
